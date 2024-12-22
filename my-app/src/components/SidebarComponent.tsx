@@ -13,9 +13,11 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 bg-gray-800 text-white h-screen p-6">
-      <h2 className="text-xl font-bold mb-4">Aplikasi Penghitung</h2>
-      <ul>
+    <div className="w-64 bg-gray-800 text-white h-screen p-6 fixed top-0 left-0">
+      <h2 className="text-xl font-bold mb-6 text-center">
+        Aplikasi Penghitung
+      </h2>
+      <ul className="flex-1">
         <li className="mb-4">
           <Link href="/dashboard" className="hover:underline">
             Dashboard
@@ -31,16 +33,15 @@ const Sidebar = () => {
             Pengaturan
           </Link>
         </li>
-        {/* Tombol Logout */}
-        <li className="mt-auto">
-          <button
-            onClick={handleLogout}
-            className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700"
-          >
-            Logout
-          </button>
-        </li>
       </ul>
+      <div>
+        <button
+          onClick={handleLogout}
+          className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

@@ -8,5 +8,6 @@
   "/_error": "pages/_error.js",
   "/login": "pages/login.js",
   "/": "pages/index.js",
-  "/api/login": "pages/api/login.js"
+  "/api/login": "pages/api/login.js",
+  "/api/lastSummary": "pages/api/lastSummary.js"
 }

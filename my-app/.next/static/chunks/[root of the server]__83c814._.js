@@ -574,10 +574,10 @@ const Sidebar = ()=>{
         router.push("/login");
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "w-64 bg-gray-800 text-white h-screen p-6",
+        className: "w-64 bg-gray-800 text-white h-screen p-6 fixed top-0 left-0",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-xl font-bold mb-4",
+                className: "text-xl font-bold mb-6 text-center",
                 children: "Aplikasi Penghitung"
             }, void 0, false, {
                 fileName: "[project]/src/components/SidebarComponent.tsx",
@@ -585,6 +585,7 @@ const Sidebar = ()=>{
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                className: "flex-1",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                         className: "mb-4",
@@ -594,12 +595,12 @@ const Sidebar = ()=>{
                             children: "Dashboard"
                         }, void 0, false, {
                             fileName: "[project]/src/components/SidebarComponent.tsx",
-                            lineNumber: 20,
+                            lineNumber: 22,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/SidebarComponent.tsx",
-                        lineNumber: 19,
+                        lineNumber: 21,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -610,12 +611,12 @@ const Sidebar = ()=>{
                             children: "Transaksi"
                         }, void 0, false, {
                             fileName: "[project]/src/components/SidebarComponent.tsx",
-                            lineNumber: 25,
+                            lineNumber: 27,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/SidebarComponent.tsx",
-                        lineNumber: 24,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -626,34 +627,33 @@ const Sidebar = ()=>{
                             children: "Pengaturan"
                         }, void 0, false, {
                             fileName: "[project]/src/components/SidebarComponent.tsx",
-                            lineNumber: 30,
+                            lineNumber: 32,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/SidebarComponent.tsx",
-                        lineNumber: 29,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                        className: "mt-auto",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: handleLogout,
-                            className: "w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700",
-                            children: "Logout"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/SidebarComponent.tsx",
-                            lineNumber: 36,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/SidebarComponent.tsx",
-                        lineNumber: 35,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/SidebarComponent.tsx",
-                lineNumber: 18,
+                lineNumber: 20,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: handleLogout,
+                    className: "w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400",
+                    children: "Logout"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/SidebarComponent.tsx",
+                    lineNumber: 38,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/SidebarComponent.tsx",
+                lineNumber: 37,
                 columnNumber: 7
             }, this)
         ]
@@ -698,7 +698,7 @@ const Layout = ({ children })=>{
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "flex-1 p-6 bg-gray-50",
+                className: "flex-1 p-6 bg-gray-50 ml-64",
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/LayoutComponent.tsx",
@@ -730,11 +730,10 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/index.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/build/polyfills/process.js [client] (ecmascript)");
 ;
 var _s = __turbopack_refresh__.signature();
 ;
-const LastSummary = ()=>{
+const WeeklySummary = ()=>{
     _s();
     const [totalIncome, setTotalIncome] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [totalExpense, setTotalExpense] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(0);
@@ -743,49 +742,46 @@ const LastSummary = ()=>{
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [recentTransactions, setRecentTransactions] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "LastSummary.useEffect": ()=>{
+        "WeeklySummary.useEffect": ()=>{
             const fetchTransactions = {
-                "LastSummary.useEffect.fetchTransactions": async ()=>{
+                "WeeklySummary.useEffect.fetchTransactions": async ()=>{
                     try {
-                        const apiUrl = `${("TURBOPACK compile-time value", "http://localhost:3000")}/api/transactions`;
+                        const apiUrl = "/api/lastSummary"; // Mengakses API yang sudah dibuat
                         const response = await fetch(apiUrl);
                         if (!response.ok) {
                             throw new Error("Gagal memuat data transaksi");
                         }
                         const data = await response.json();
                         const income = data.filter({
-                            "LastSummary.useEffect.fetchTransactions.income": (transaction)=>transaction.type === "income"
-                        }["LastSummary.useEffect.fetchTransactions.income"]).reduce({
-                            "LastSummary.useEffect.fetchTransactions.income": (acc, curr)=>acc + curr.amount
-                        }["LastSummary.useEffect.fetchTransactions.income"], 0);
+                            "WeeklySummary.useEffect.fetchTransactions.income": (transaction)=>transaction.type === "income"
+                        }["WeeklySummary.useEffect.fetchTransactions.income"]).reduce({
+                            "WeeklySummary.useEffect.fetchTransactions.income": (acc, curr)=>acc + curr.amount
+                        }["WeeklySummary.useEffect.fetchTransactions.income"], 0);
                         const expense = data.filter({
-                            "LastSummary.useEffect.fetchTransactions.expense": (transaction)=>transaction.type === "expense"
-                        }["LastSummary.useEffect.fetchTransactions.expense"]).reduce({
-                            "LastSummary.useEffect.fetchTransactions.expense": (acc, curr)=>acc + curr.amount
-                        }["LastSummary.useEffect.fetchTransactions.expense"], 0);
+                            "WeeklySummary.useEffect.fetchTransactions.expense": (transaction)=>transaction.type === "expense"
+                        }["WeeklySummary.useEffect.fetchTransactions.expense"]).reduce({
+                            "WeeklySummary.useEffect.fetchTransactions.expense": (acc, curr)=>acc + curr.amount
+                        }["WeeklySummary.useEffect.fetchTransactions.expense"], 0);
                         const balance = income - expense;
                         setTotalIncome(income);
                         setTotalExpense(expense);
                         setBalance(balance);
-                        const sortedTransactions = data.sort({
-                            "LastSummary.useEffect.fetchTransactions.sortedTransactions": (a, b)=>new Date(b.date).getTime() - new Date(a.date).getTime()
-                        }["LastSummary.useEffect.fetchTransactions.sortedTransactions"]).slice(0, 5);
-                        setRecentTransactions(sortedTransactions);
+                        setRecentTransactions(data);
                     } catch (err) {
                         setError(err instanceof Error ? err.message : "Terjadi kesalahan");
                     } finally{
                         setLoading(false);
                     }
                 }
-            }["LastSummary.useEffect.fetchTransactions"];
+            }["WeeklySummary.useEffect.fetchTransactions"];
             fetchTransactions();
         }
-    }["LastSummary.useEffect"], []);
+    }["WeeklySummary.useEffect"], []);
     if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
         children: "Loading..."
     }, void 0, false, {
         fileName: "[project]/src/components/LastSummaryComponent.tsx",
-        lineNumber: 54,
+        lineNumber: 47,
         columnNumber: 23
     }, this);
     if (error) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -793,7 +789,7 @@ const LastSummary = ()=>{
         children: error
     }, void 0, false, {
         fileName: "[project]/src/components/LastSummaryComponent.tsx",
-        lineNumber: 55,
+        lineNumber: 48,
         columnNumber: 21
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -804,100 +800,7 @@ const LastSummary = ()=>{
                 children: "Ringkasan Mingguan"
             }, void 0, false, {
                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 59,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-green-100 p-4 rounded-lg shadow",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-xl font-semibold text-green-700",
-                                children: "Total Pendapatan"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 62,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-2xl font-bold text-green-900",
-                                children: [
-                                    "Rp ",
-                                    totalIncome.toLocaleString()
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 65,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                        lineNumber: 61,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-red-100 p-4 rounded-lg shadow",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-xl font-semibold text-red-700",
-                                children: "Total Pengeluaran"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 70,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-2xl font-bold text-red-900",
-                                children: [
-                                    "Rp ",
-                                    totalExpense.toLocaleString()
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 73,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                        lineNumber: 69,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-blue-100 p-4 rounded-lg shadow",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-xl font-semibold text-blue-700",
-                                children: "Saldo"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 78,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-2xl font-bold text-blue-900",
-                                children: [
-                                    "Rp ",
-                                    balance.toLocaleString()
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 79,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                        lineNumber: 77,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 60,
+                lineNumber: 52,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -905,7 +808,7 @@ const LastSummary = ()=>{
                 children: "5 Transaksi Terakhir"
             }, void 0, false, {
                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 85,
+                lineNumber: 54,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -918,7 +821,7 @@ const LastSummary = ()=>{
                                 children: transaction.type === "income" ? "Pendapatan" : "Pengeluaran"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 92,
+                                lineNumber: 61,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -926,7 +829,7 @@ const LastSummary = ()=>{
                                 children: transaction.description
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 95,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -934,7 +837,7 @@ const LastSummary = ()=>{
                                 children: new Date(transaction.date).toLocaleDateString()
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 96,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -945,32 +848,32 @@ const LastSummary = ()=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 99,
+                                lineNumber: 68,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, transaction._id, true, {
                         fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                        lineNumber: 88,
+                        lineNumber: 57,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 86,
+                lineNumber: 55,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/LastSummaryComponent.tsx",
-        lineNumber: 58,
+        lineNumber: 51,
         columnNumber: 5
     }, this);
 };
-_s(LastSummary, "FxgGCftum3hJzwuljivnJitSH80=");
-_c = LastSummary;
-const __TURBOPACK__default__export__ = LastSummary;
+_s(WeeklySummary, "FxgGCftum3hJzwuljivnJitSH80=");
+_c = WeeklySummary;
+const __TURBOPACK__default__export__ = WeeklySummary;
 var _c;
-__turbopack_refresh__.register(_c, "LastSummary");
+__turbopack_refresh__.register(_c, "WeeklySummary");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_refresh__.registerExports(module, globalThis.$RefreshHelpers$);
 }
@@ -1258,7 +1161,7 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, m: module, e: exports, t: __turbopack_require_real__ } = __turbopack_context__;
 {
-const PAGE_PATH = "/dashboard";
+const PAGE_PATH = "/about";
 (window.__NEXT_P = window.__NEXT_P || []).push([
     PAGE_PATH,
     ()=>{
