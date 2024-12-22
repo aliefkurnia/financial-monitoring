@@ -1,6 +1,8 @@
 const CHUNK_PUBLIC_PATH = "server/pages/dashboard.js";
 const runtime = require("../chunks/ssr/[turbopack]_runtime.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_next_a0d98e._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_fa_index_mjs_275a22._.js");
+runtime.loadChunk("server/chunks/ssr/node_modules_react-icons_lib_6322da._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_lodash_1f09c9._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_recharts_es6_6f3ba8._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_246108._.js");
