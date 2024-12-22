@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 63, "column": 0}, "map": {"version":3,"sources":["file://C%3A/alip/financial-monitor/frontend/my-app/src/pages/index.tsx"],"sourcesContent":["import React from \"react\";\nimport ReactDOM from \"react-dom\";\nimport App from \"./App\";\n\nReactDOM.render(<App />, document.getElementById(\"root\"));\n"],"names":[],"mappings":";;AACA;;;;;;;;;AAGA,iHAAA,CAAA,UAAQ,CAAC,MAAM,eAAC,qKAAC;;;;UAAQ,SAAS,cAAc,CAAC"}},
+    {"offset": {"line": 79, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

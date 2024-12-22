@@ -1,0 +1,3 @@
+{
+  "/api/users/register": "pages/api/users/register.js"
+}
