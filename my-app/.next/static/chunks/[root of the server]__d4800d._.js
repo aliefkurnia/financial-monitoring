@@ -1547,12 +1547,11 @@ const Dashboard = ()=>{
                         }
                         const response = await fetch(`/api/transaction?userId=${userId}`);
                         if (!response.ok) {
-                            const errorDetails = await response.text(); // Get more details from the response if possible
+                            await response.text();
                             return;
                         }
                         const data = await response.json();
                         setTransactions(data);
-                        // Calculate total income and expense only if data is not empty
                         if (data.length > 0) {
                             const income = data.filter({
                                 "Dashboard.useEffect.fetchData.income": (transaction)=>transaction.type === "income"
@@ -1623,7 +1622,7 @@ const Dashboard = ()=>{
             children: "Loading..."
         }, void 0, false, {
             fileName: "[project]/src/pages/dashboard.tsx",
-            lineNumber: 117,
+            lineNumber: 116,
             columnNumber: 12
         }, this);
     }
@@ -1634,7 +1633,7 @@ const Dashboard = ()=>{
                 children: error
             }, void 0, false, {
                 fileName: "[project]/src/pages/dashboard.tsx",
-                lineNumber: 122,
+                lineNumber: 121,
                 columnNumber: 17
             }, this),
             transactions.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1644,7 +1643,7 @@ const Dashboard = ()=>{
                         children: "No transactions found. Please add a transaction below:"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 126,
+                        lineNumber: 125,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1653,12 +1652,12 @@ const Dashboard = ()=>{
                             onAddTransaction: handleAddTransaction
                         }, void 0, false, {
                             fileName: "[project]/src/pages/dashboard.tsx",
-                            lineNumber: 130,
+                            lineNumber: 129,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 129,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1672,7 +1671,7 @@ const Dashboard = ()=>{
                                 children: "Grafik Pemasukan dan Pengeluaran"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/dashboard.tsx",
-                                lineNumber: 136,
+                                lineNumber: 135,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CombinedChartComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1680,13 +1679,13 @@ const Dashboard = ()=>{
                                 expenseData: transactions.filter((t)=>t.type === "expense")
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/dashboard.tsx",
-                                lineNumber: 139,
+                                lineNumber: 138,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 135,
+                        lineNumber: 134,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1695,12 +1694,12 @@ const Dashboard = ()=>{
                             transactions: transactions
                         }, void 0, false, {
                             fileName: "[project]/src/pages/dashboard.tsx",
-                            lineNumber: 146,
+                            lineNumber: 145,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 145,
+                        lineNumber: 144,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1709,12 +1708,12 @@ const Dashboard = ()=>{
                             onAddTransaction: handleAddTransaction
                         }, void 0, false, {
                             fileName: "[project]/src/pages/dashboard.tsx",
-                            lineNumber: 150,
+                            lineNumber: 149,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 149,
+                        lineNumber: 148,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1725,20 +1724,20 @@ const Dashboard = ()=>{
                                 children: "Prediksi Tabungan"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/dashboard.tsx",
-                                lineNumber: 154,
+                                lineNumber: 153,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SavingsPredictionComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                                 savings: savings
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/dashboard.tsx",
-                                lineNumber: 155,
+                                lineNumber: 154,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 153,
+                        lineNumber: 152,
                         columnNumber: 11
                     }, this)
                 ]
@@ -1746,7 +1745,7 @@ const Dashboard = ()=>{
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/dashboard.tsx",
-        lineNumber: 121,
+        lineNumber: 120,
         columnNumber: 5
     }, this);
 };

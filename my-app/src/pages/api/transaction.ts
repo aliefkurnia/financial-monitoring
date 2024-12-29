@@ -102,7 +102,12 @@ export default async function handler(
           return res.status(200).json(lastTransactions);
         }
 
-        const filter: any = {
+        interface Filter {
+          userId: Types.ObjectId;
+          type?: "income" | "expense";
+        }
+
+        const filter: Filter = {
           userId: new Types.ObjectId(queryUserId as string),
         };
 

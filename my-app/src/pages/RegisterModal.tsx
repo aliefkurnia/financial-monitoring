@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -21,7 +20,6 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
   });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

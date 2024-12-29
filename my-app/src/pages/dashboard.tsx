@@ -28,14 +28,13 @@ const Dashboard = () => {
         const response = await fetch(`/api/transaction?userId=${userId}`);
 
         if (!response.ok) {
-          const errorDetails = await response.text(); // Get more details from the response if possible
+          await response.text();
           return;
         }
 
         const data: Transaction[] = await response.json();
         setTransactions(data);
 
-        // Calculate total income and expense only if data is not empty
         if (data.length > 0) {
           const income = data
             .filter((transaction) => transaction.type === "income")
