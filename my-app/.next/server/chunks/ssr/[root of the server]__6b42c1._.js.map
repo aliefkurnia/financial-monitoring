@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file://C%3A/alip/financial-monitor/frontend/my-app/src/pages/index.tsx"],"sourcesContent":["import React from \"react\";\n\nconst HomePage = () => {\n  return (\n    <div>\n      <h1>Welcome to Financial Monitor</h1>\n    </div>\n  );\n};\n\nexport default HomePage;\n"],"names":[],"mappings":";;;;;AAEA,MAAM,WAAW;IACf,qBACE,qKAAC;kBACC,cAAA,qKAAC;sBAAG;;;;;;;;;;;AAGV;uCAEe"}},
-    {"offset": {"line": 76, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

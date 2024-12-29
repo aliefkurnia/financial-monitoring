@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file://C%3A/alip/financial-monitor/frontend/my-app/src/styles/Sidebar.css"],"sourcesContent":[".sidebar {\r\n  width: 250px;\r\n  height: 100vh;\r\n  background-color: #2c3e50;\r\n  color: white;\r\n  padding: 20px;\r\n  position: fixed;\r\n}\r\n\r\n.sidebar-title {\r\n  font-size: 24px;\r\n  text-align: center;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.sidebar-menu {\r\n  list-style-type: none;\r\n  padding: 0;\r\n}\r\n\r\n.sidebar-menu li {\r\n  margin: 20px 0;\r\n}\r\n\r\n.sidebar-link {\r\n  text-decoration: none;\r\n  color: white;\r\n  font-size: 18px;\r\n  display: block;\r\n  transition: background-color 0.3s;\r\n}\r\n\r\n.sidebar-link:hover {\r\n  background-color: #34495e;\r\n  padding-left: 10px;\r\n}\r\n"],"names":[],"mappings":"AAAA;;;;;;;;;AASA;;;;;;AAMA;;;;;AAKA;;;;AAIA;;;;;;;;AAQA"}},
-    {"offset": {"line": 37, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}

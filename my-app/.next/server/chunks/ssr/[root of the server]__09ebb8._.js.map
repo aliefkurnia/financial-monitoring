@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file://C%3A/alip/financial-monitor/my-app/src/pages/_app.tsx"],"sourcesContent":["import { AppProps } from \"next/app\";\r\nimport \"../styles/globals.css\";\r\n\r\nfunction MyApp({ Component, pageProps }: AppProps) {\r\n  return (\r\n    <div className=\"bg-gray-50 min-h-screen\">\r\n      <Component {...pageProps} />\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default MyApp;\r\n"],"names":[],"mappings":";;;;;;AAGA,SAAS,MAAM,EAAE,SAAS,EAAE,SAAS,EAAY;IAC/C,qBACE,qKAAC;QAAI,WAAU;kBACb,cAAA,qKAAC;YAAW,GAAG,SAAS;;;;;;;;;;;AAG9B;uCAEe"}},
-    {"offset": {"line": 78, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 83, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 83, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
