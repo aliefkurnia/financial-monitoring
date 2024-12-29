@@ -34,7 +34,7 @@ __turbopack_esm__({
 });
 var __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__ = __turbopack_import__("[externals]/mongoose [external] (mongoose, cjs)");
 ;
-const UserSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["Schema"]({
+const UserSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].Schema({
     username: {
         type: String,
         required: true
@@ -47,7 +47,13 @@ const UserSchema = new __TURBOPACK__imported__module__$5b$externals$5d2f$mongoos
     password: {
         type: String,
         required: true
-    }
+    },
+    transactions: [
+        {
+            type: __TURBOPACK__imported__module__$5b$externals$5d2f$mongoose__$5b$external$5d$__$28$mongoose$2c$__cjs$29$__["default"].Schema.Types.ObjectId,
+            ref: "Transaction"
+        }
+    ]
 }, {
     timestamps: true
 });

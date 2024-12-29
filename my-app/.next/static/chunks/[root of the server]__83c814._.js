@@ -900,20 +900,20 @@ const WeeklySummary = ()=>{
                 children: "5 Transaksi Terakhir"
             }, void 0, false, {
                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 54,
+                lineNumber: 53,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "space-y-4",
+                className: "flex space-x-4 overflow-x-auto",
                 children: recentTransactions.map((transaction)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-gray-100 p-4 rounded-lg shadow",
+                        className: "bg-gray-100 p-4 rounded-lg shadow flex-1 min-w-[300px]",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                 className: "text-xl font-semibold",
                                 children: transaction.type === "income" ? "Pendapatan" : "Pengeluaran"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 61,
+                                lineNumber: 60,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -921,7 +921,7 @@ const WeeklySummary = ()=>{
                                 children: transaction.description
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 64,
+                                lineNumber: 63,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -929,7 +929,7 @@ const WeeklySummary = ()=>{
                                 children: new Date(transaction.date).toLocaleDateString()
                             }, void 0, false, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 65,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -940,18 +940,18 @@ const WeeklySummary = ()=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                                lineNumber: 68,
+                                lineNumber: 67,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, transaction._id, true, {
                         fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                        lineNumber: 57,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/LastSummaryComponent.tsx",
-                lineNumber: 55,
+                lineNumber: 54,
                 columnNumber: 7
             }, this)
         ]
@@ -1141,6 +1141,10 @@ const Dashboard = ()=>{
     _s();
     const [incomeData, setIncomeData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [expenseData, setExpenseData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [description, setDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [amount, setAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [transactionType, setTransactionType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])("income"); // Default: Pemasukan
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const savings = 500;
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
@@ -1170,6 +1174,53 @@ const Dashboard = ()=>{
             fetchExpenseData();
         }
     }["Dashboard.useEffect"], []);
+    const handleAddTransaction = async (e)=>{
+        e.preventDefault();
+        if (!description || !amount) {
+            alert("Deskripsi dan jumlah harus diisi!");
+            return;
+        }
+        setLoading(true);
+        const newTransaction = {
+            description,
+            amount: Number(amount),
+            type: transactionType,
+            date: new Date().toISOString()
+        };
+        try {
+            const response = await fetch("/api/transactions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newTransaction)
+            });
+            if (!response.ok) {
+                throw new Error("Gagal menambah transaksi");
+            }
+            const addedTransaction = await response.json();
+            // Update list sesuai tipe transaksi
+            if (transactionType === "income") {
+                setIncomeData([
+                    ...incomeData,
+                    addedTransaction
+                ]);
+            } else {
+                setExpenseData([
+                    ...expenseData,
+                    addedTransaction
+                ]);
+            }
+            // Reset form
+            setDescription("");
+            setAmount("");
+            setTransactionType("income"); // Kembali ke default pemasukan
+        } catch (error) {
+            console.error("Error adding transaction:", error);
+        } finally{
+            setLoading(false);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$LayoutComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1180,7 +1231,7 @@ const Dashboard = ()=>{
                         children: "Grafik Pemasukan dan Pengeluaran"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 41,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CombinedChartComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1188,25 +1239,159 @@ const Dashboard = ()=>{
                         expenseData: expenseData
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 44,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/dashboard.tsx",
-                lineNumber: 40,
+                lineNumber: 94,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "mb-8",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$LastSummaryComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                     fileName: "[project]/src/pages/dashboard.tsx",
-                    lineNumber: 48,
+                    lineNumber: 102,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/pages/dashboard.tsx",
-                lineNumber: 47,
+                lineNumber: 101,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "bg-white shadow-md rounded-lg p-6 mb-8",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                        className: "text-2xl font-semibold mb-4",
+                        children: "Tambah Transaksi"
+                    }, void 0, false, {
+                        fileName: "[project]/src/pages/dashboard.tsx",
+                        lineNumber: 107,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                        onSubmit: handleAddTransaction,
+                        className: "space-y-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        className: "block text-lg font-medium",
+                                        children: "Deskripsi"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 111,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        type: "text",
+                                        value: description,
+                                        onChange: (e)=>setDescription(e.target.value),
+                                        className: "w-full p-2 border rounded-lg",
+                                        required: true
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 112,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/pages/dashboard.tsx",
+                                lineNumber: 110,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        className: "block text-lg font-medium",
+                                        children: "Jumlah (Rp)"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 123,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                        type: "number",
+                                        value: amount,
+                                        onChange: (e)=>setAmount(Number(e.target.value)),
+                                        className: "w-full p-2 border rounded-lg",
+                                        required: true
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 124,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/pages/dashboard.tsx",
+                                lineNumber: 122,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        className: "block text-lg font-medium",
+                                        children: "Tipe Transaksi"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 135,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                        value: transactionType,
+                                        onChange: (e)=>setTransactionType(e.target.value),
+                                        className: "w-full p-2 border rounded-lg",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "income",
+                                                children: "Pemasukan"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/pages/dashboard.tsx",
+                                                lineNumber: 141,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "expense",
+                                                children: "Pengeluaran"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/pages/dashboard.tsx",
+                                                lineNumber: 142,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/pages/dashboard.tsx",
+                                        lineNumber: 136,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/pages/dashboard.tsx",
+                                lineNumber: 134,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                type: "submit",
+                                className: "bg-blue-500 text-white px-4 py-2 rounded-lg",
+                                disabled: loading,
+                                children: loading ? "Menambah..." : "Tambah Transaksi"
+                            }, void 0, false, {
+                                fileName: "[project]/src/pages/dashboard.tsx",
+                                lineNumber: 146,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/pages/dashboard.tsx",
+                        lineNumber: 108,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/pages/dashboard.tsx",
+                lineNumber: 106,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1217,30 +1402,30 @@ const Dashboard = ()=>{
                         children: "Prediksi Tabungan"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 52,
+                        lineNumber: 157,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SavingsPredictionComponent$2e$tsx__$5b$client$5d$__$28$ecmascript$29$__["default"], {
                         savings: savings
                     }, void 0, false, {
                         fileName: "[project]/src/pages/dashboard.tsx",
-                        lineNumber: 53,
+                        lineNumber: 158,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/dashboard.tsx",
-                lineNumber: 51,
+                lineNumber: 156,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/dashboard.tsx",
-        lineNumber: 39,
+        lineNumber: 93,
         columnNumber: 5
     }, this);
 };
-_s(Dashboard, "uFc91dLzGaSiYFVahMQRS2emJTk=");
+_s(Dashboard, "+so7lGy6cS5o7HybToWA6rscRO8=");
 _c = Dashboard;
 const __TURBOPACK__default__export__ = Dashboard;
 var _c;

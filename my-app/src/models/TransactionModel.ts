@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
-const transactionSchema = new mongoose.Schema(
+const TransactionSchema = new mongoose.Schema(
   {
+    transactionId: { type: String, required: true, unique: true },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -15,8 +16,16 @@ const transactionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Replace the default _id with transactionId
+TransactionSchema.set("toObject", {
+  transform: (doc, ret) => {
+    ret.id = ret.transactionId; // Change _id to transactionId
+    delete ret._id;
+  },
+});
+
 const Transaction =
   mongoose.models.Transaction ||
-  mongoose.model("Transaction", transactionSchema);
+  mongoose.model("Transaction", TransactionSchema);
 
 export default Transaction;

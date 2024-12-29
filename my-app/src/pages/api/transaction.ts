@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../lib/mongodb";
 import Transaction from "../../models/TransactionModel";
+import User from "../../models/UserModel";
 import { Types } from "mongoose";
+import { v4 as uuidv4 } from "uuid"; // Import uuid to generate a custom transactionId
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,82 +12,154 @@ export default async function handler(
   await dbConnect();
 
   switch (req.method) {
-    case "GET":
-      const userId = req.query.userId as string;
-
-      if (!userId) {
-        return res.status(400).json({ message: "User ID harus disertakan" });
-      }
-
-      try {
-        const transactions = await Transaction.find({
-          userId: new Types.ObjectId(userId),
-        });
-        res.status(200).json(transactions);
-      } catch (error) {
-        console.error(error);
-        res
-          .status(500)
-          .json({ message: "Terjadi kesalahan saat mengambil data transaksi" });
-      }
-      break;
-
     case "POST":
-      const { userId: postUserId, type, amount, description, date } = req.body;
+      const { userId, type, amount, description, date } = req.body;
 
-      if (!postUserId || !type || !amount || !description || !date) {
+      // Validate required fields
+      if (!userId || !type || !amount || !description || !date) {
         return res.status(400).json({ message: "Semua field harus diisi" });
       }
 
+      // Validate userId format
+      if (!Types.ObjectId.isValid(userId)) {
+        return res.status(400).json({ message: "Invalid User ID" });
+      }
+
+      // Validate amount
+      if (isNaN(amount) || amount <= 0) {
+        return res
+          .status(400)
+          .json({ message: "Amount must be a positive number" });
+      }
+
+      // Validate date format
+      const parsedDate = new Date(date);
+      if (isNaN(parsedDate.getTime())) {
+        return res.status(400).json({ message: "Invalid date format" });
+      }
+
       try {
+        // Generate a unique transactionId
+        const transactionId = uuidv4();
+
+        // Create and save the new transaction
         const newTransaction = new Transaction({
-          userId: new Types.ObjectId(postUserId),
+          transactionId, // Add the custom transactionId
+          userId: new Types.ObjectId(userId),
           type,
           amount,
           description,
-          date: new Date(date),
+          date: parsedDate,
         });
 
         await newTransaction.save();
+
+        // Find the user and add the transaction to their record
+        const user = await User.findById(userId);
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        user.transactions.push(newTransaction._id);
+        await user.save();
+
+        // Respond with the newly created transaction
         res.status(201).json(newTransaction);
       } catch (error) {
-        console.error(error);
+        console.error("Error creating transaction:", error);
         res
           .status(500)
           .json({ message: "Terjadi kesalahan saat menambahkan transaksi" });
       }
       break;
 
-    case "DELETE":
-      const { transactionId } = req.body;
+    case "GET":
+      res.setHeader("Cache-Control", "no-store"); // Prevent caching
 
-      if (!transactionId) {
-        return res
-          .status(400)
-          .json({ message: "Transaction ID harus disertakan" });
+      const {
+        userId: queryUserId,
+        type: transactionType,
+        lastSummary,
+      } = req.query;
+
+      // Validate userId format
+      if (!queryUserId || !Types.ObjectId.isValid(queryUserId as string)) {
+        return res.status(400).json({ message: "Invalid or missing userId" });
       }
 
       try {
-        const deletedTransaction = await Transaction.findByIdAndDelete(
-          transactionId
-        );
+        if (lastSummary === "true") {
+          const lastTransactions = await Transaction.find({
+            userId: queryUserId,
+          })
+            .sort({ createdAt: -1 })
+            .limit(5);
 
-        if (!deletedTransaction) {
-          return res.status(404).json({ message: "Transaksi tidak ditemukan" });
+          if (lastTransactions.length === 0) {
+            return res.status(404).json({ message: "No transactions found" });
+          }
+
+          return res.status(200).json(lastTransactions);
         }
 
-        res.status(200).json({ message: "Transaksi berhasil dihapus" });
+        const filter: any = {
+          userId: new Types.ObjectId(queryUserId as string),
+        };
+
+        if (
+          transactionType &&
+          (transactionType === "income" || transactionType === "expense")
+        ) {
+          filter.type = transactionType;
+        }
+
+        const transactions = await Transaction.find(filter);
+
+        if (transactions.length === 0) {
+          return res.status(404).json({ message: "No transactions found" });
+        }
+
+        res.status(200).json(transactions);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching transactions:", error);
         res
           .status(500)
-          .json({ message: "Terjadi kesalahan saat menghapus transaksi" });
+          .json({ message: "Terjadi kesalahan saat mengambil transaksi" });
+      }
+      break;
+
+    case "DELETE":
+      const { transactionId } = req.query;
+
+      if (!transactionId || typeof transactionId === "undefined") {
+        return res
+          .status(400)
+          .json({ message: "Invalid or missing transactionId" });
+      }
+
+      try {
+        const transaction = await Transaction.findOneAndDelete({
+          transactionId: transactionId,
+        });
+
+        const user = await User.findOne({ transactions: transaction._id });
+        if (user) {
+          user.transactions = user.transactions.filter(
+            (t: Types.ObjectId) => !t.equals(transaction._id)
+          );
+          await user.save();
+        }
+
+        res.status(200).json({ message: "Transaction deleted successfully" });
+      } catch (error) {
+        console.error("Error deleting transaction:", error);
+        res.status(500).json({ message: "Error deleting transaction" });
       }
       break;
 
     default:
-      res.setHeader("Allow", ["GET", "POST", "DELETE"]);
-      res.status(405).json({ message: `Metode ${req.method} tidak diizinkan` });
+      res.setHeader("Allow", ["POST", "GET", "DELETE"]);
+      res.status(405).json({ message: `Method ${req.method} Not Allowed` });
       break;
   }
 }

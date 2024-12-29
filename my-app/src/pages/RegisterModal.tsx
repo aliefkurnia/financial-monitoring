@@ -37,16 +37,13 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
     setErrorMessage("");
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(`/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
         onRegisterSuccess();
@@ -58,6 +55,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({
         onRegisterError(message);
       }
     } catch (error) {
+      console.log(error);
+
       setErrorMessage("Terjadi kesalahan saat menghubungi server.");
       onRegisterError("Terjadi kesalahan saat menghubungi server.");
     } finally {

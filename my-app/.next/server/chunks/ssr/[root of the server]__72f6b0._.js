@@ -136,13 +136,20 @@ const Transactions = ()=>{
     });
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         const fetchTransactions = async ()=>{
-            const userId = "USER_ID"; // Ganti dengan user ID yang sesuai
+            const userId = "USER_ID"; // Replace with actual user ID
             try {
                 const response = await fetch(`/api/transaction?userId=${userId}`);
                 const data = await response.json();
-                setTransactions(data);
+                // Ensure the data is an array
+                if (Array.isArray(data)) {
+                    setTransactions(data);
+                } else {
+                    console.error("Received data is not an array", data);
+                    setTransactions([]); // Fallback to empty array
+                }
             } catch (error) {
                 console.error("Error fetching transactions:", error);
+                setTransactions([]); // Fallback to empty array on error
             }
         };
         fetchTransactions();
@@ -211,7 +218,7 @@ const Transactions = ()=>{
                 children: "Manage Transactions"
             }, void 0, false, {
                 fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 97,
+                lineNumber: 105,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("form", {
@@ -228,7 +235,7 @@ const Transactions = ()=>{
                         className: "border p-2 mr-2"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 100,
+                        lineNumber: 108,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -241,7 +248,7 @@ const Transactions = ()=>{
                         className: "border p-2 mr-2"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 109,
+                        lineNumber: 117,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
@@ -255,7 +262,7 @@ const Transactions = ()=>{
                                 children: "Income"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 124,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -263,13 +270,13 @@ const Transactions = ()=>{
                                 children: "Expense"
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 125,
+                                lineNumber: 133,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 118,
+                        lineNumber: 126,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -281,7 +288,7 @@ const Transactions = ()=>{
                         className: "border p-2 mr-2"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 127,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -290,13 +297,13 @@ const Transactions = ()=>{
                         children: "Add Transaction"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 139,
+                        lineNumber: 147,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 99,
+                lineNumber: 107,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -307,7 +314,7 @@ const Transactions = ()=>{
                         children: "Transactions"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 145,
+                        lineNumber: 153,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("table", {
@@ -321,7 +328,7 @@ const Transactions = ()=>{
                                             children: "Type"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 149,
+                                            lineNumber: 157,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
@@ -329,7 +336,7 @@ const Transactions = ()=>{
                                             children: "Amount"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 150,
+                                            lineNumber: 158,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
@@ -337,7 +344,7 @@ const Transactions = ()=>{
                                             children: "Description"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 151,
+                                            lineNumber: 159,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
@@ -345,7 +352,7 @@ const Transactions = ()=>{
                                             children: "Date"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 152,
+                                            lineNumber: 160,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("th", {
@@ -353,18 +360,18 @@ const Transactions = ()=>{
                                             children: "Actions"
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 161,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/transactions.tsx",
-                                    lineNumber: 148,
+                                    lineNumber: 156,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 147,
+                                lineNumber: 155,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("tbody", {
@@ -375,7 +382,7 @@ const Transactions = ()=>{
                                                 children: transaction.type
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 159,
+                                                lineNumber: 167,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -383,7 +390,7 @@ const Transactions = ()=>{
                                                 children: transaction.amount
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 160,
+                                                lineNumber: 168,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -391,7 +398,7 @@ const Transactions = ()=>{
                                                 children: transaction.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 169,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -399,7 +406,7 @@ const Transactions = ()=>{
                                                 children: new Date(transaction.date).toLocaleDateString()
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 162,
+                                                lineNumber: 170,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("td", {
@@ -411,7 +418,7 @@ const Transactions = ()=>{
                                                         children: "Edit"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/transactions.tsx",
-                                                        lineNumber: 166,
+                                                        lineNumber: 174,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -420,42 +427,42 @@ const Transactions = ()=>{
                                                         children: "Delete"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/pages/transactions.tsx",
-                                                        lineNumber: 172,
+                                                        lineNumber: 180,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 165,
+                                                lineNumber: 173,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, transaction._id, true, {
                                         fileName: "[project]/src/pages/transactions.tsx",
-                                        lineNumber: 158,
+                                        lineNumber: 166,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 156,
+                                lineNumber: 164,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 146,
+                        lineNumber: 154,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 144,
+                lineNumber: 152,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/pages/transactions.tsx",
-        lineNumber: 96,
+        lineNumber: 104,
         columnNumber: 5
     }, this);
 };

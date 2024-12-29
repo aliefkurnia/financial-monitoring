@@ -555,365 +555,126 @@ function triggerUpdate(msg) {
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, k: __turbopack_refresh__, m: module, z: __turbopack_require_stub__ } = __turbopack_context__;
 {
 __turbopack_esm__({
-    "default": (()=>__TURBOPACK__default__export__)
+    "default": (()=>handler)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/jsx-dev-runtime.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/react/index.js [client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/router.js [client] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '../../lib/mongodb'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
+(()=>{
+    const e = new Error("Cannot find module '../../models/TransactionModel'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mongoose$2f$dist$2f$browser$2e$umd$2e$js__$5b$client$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/mongoose/dist/browser.umd.js [client] (ecmascript)");
 ;
-var _s = __turbopack_refresh__.signature();
 ;
 ;
-const Transactions = ()=>{
-    _s();
-    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
-    const [transactions, setTransactions] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [newTransaction, setNewTransaction] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])({
-        _id: "",
-        userId: "",
-        type: "income",
-        amount: 0,
-        description: "",
-        date: new Date()
-    });
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "Transactions.useEffect": ()=>{
-            const fetchTransactions = {
-                "Transactions.useEffect.fetchTransactions": async ()=>{
-                    const userId = "USER_ID"; // Ganti dengan user ID yang sesuai
-                    try {
-                        const response = await fetch(`/api/transaction?userId=${userId}`);
-                        const data = await response.json();
-                        setTransactions(data);
-                    } catch (error) {
-                        console.error("Error fetching transactions:", error);
-                    }
-                }
-            }["Transactions.useEffect.fetchTransactions"];
-            fetchTransactions();
-        }
-    }["Transactions.useEffect"], []);
-    const handleChange = (e)=>{
-        const { name, value } = e.target;
-        setNewTransaction((prev)=>({
-                ...prev,
-                [name]: value
-            }));
-    };
-    const handleSubmit = async (e)=>{
-        e.preventDefault();
-        try {
-            const response = await fetch("/api/transaction", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newTransaction)
-            });
-            if (response.ok) {
-                const transaction = await response.json();
-                setTransactions((prev)=>[
-                        ...prev,
-                        transaction
-                    ]);
-                setNewTransaction({
-                    _id: "",
-                    userId: "",
-                    type: "income",
-                    amount: 0,
-                    description: "",
-                    date: new Date()
+async function handler(req, res) {
+    // Connect to the MongoDB database
+    await dbConnect();
+    switch(req.method){
+        case "GET":
+            // Extract userId from query parameters
+            const userId = req.query.userId;
+            // Validate if userId is a valid ObjectId
+            if (!userId || !__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mongoose$2f$dist$2f$browser$2e$umd$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Types"].ObjectId.isValid(userId)) {
+                return res.status(400).json({
+                    message: "Invalid User ID"
                 });
             }
-        } catch (error) {
-            console.error("Error creating transaction:", error);
-        }
-    };
-    const handleDelete = async (id)=>{
-        try {
-            const response = await fetch("/api/transaction", {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    transactionId: id
-                })
-            });
-            if (response.ok) {
-                setTransactions((prev)=>prev.filter((transaction)=>transaction._id !== id));
+            try {
+                // Query the database for transactions that match the userId
+                const transactions = await Transaction.find({
+                    userId: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mongoose$2f$dist$2f$browser$2e$umd$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Types"].ObjectId(userId)
+                });
+                // Return the transactions as a response
+                res.status(200).json(transactions);
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({
+                    message: "Terjadi kesalahan saat mengambil data transaksi"
+                });
             }
-        } catch (error) {
-            console.error("Error deleting transaction:", error);
-        }
-    };
-    const handleEdit = (transaction)=>{
-        setNewTransaction(transaction);
-    };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-3xl font-bold mb-4",
-                children: "Manage Transactions"
-            }, void 0, false, {
-                fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 97,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                onSubmit: handleSubmit,
-                className: "mb-4",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "text",
-                        name: "description",
-                        placeholder: "Description",
-                        value: newTransaction.description,
-                        onChange: handleChange,
-                        required: true,
-                        className: "border p-2 mr-2"
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 100,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "number",
-                        name: "amount",
-                        placeholder: "Amount",
-                        value: newTransaction.amount,
-                        onChange: handleChange,
-                        required: true,
-                        className: "border p-2 mr-2"
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 109,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                        name: "type",
-                        value: newTransaction.type,
-                        onChange: handleChange,
-                        className: "border p-2 mr-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                value: "income",
-                                children: "Income"
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 124,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                value: "expense",
-                                children: "Expense"
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 125,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 118,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        type: "date",
-                        name: "date",
-                        value: newTransaction.date ? new Date(newTransaction.date).toISOString().split("T")[0] : "",
-                        onChange: handleChange,
-                        required: true,
-                        className: "border p-2 mr-2"
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 127,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        type: "submit",
-                        className: "bg-blue-500 text-white p-2 rounded",
-                        children: "Add Transaction"
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 139,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 99,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "transactions-list",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        className: "text-xl font-semibold mb-4",
-                        children: "Transactions"
-                    }, void 0, false, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 145,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                        className: "table-auto w-full",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "border p-2",
-                                            children: "Type"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 149,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "border p-2",
-                                            children: "Amount"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 150,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "border p-2",
-                                            children: "Description"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 151,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "border p-2",
-                                            children: "Date"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 152,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "border p-2",
-                                            children: "Actions"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/pages/transactions.tsx",
-                                            lineNumber: 153,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/pages/transactions.tsx",
-                                    lineNumber: 148,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 147,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
-                                children: transactions.map((transaction)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                className: "border p-2",
-                                                children: transaction.type
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 159,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                className: "border p-2",
-                                                children: transaction.amount
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 160,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                className: "border p-2",
-                                                children: transaction.description
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 161,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                className: "border p-2",
-                                                children: new Date(transaction.date).toLocaleDateString()
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 162,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                className: "border p-2",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>handleEdit(transaction),
-                                                        className: "bg-yellow-500 text-white p-1 rounded mr-2",
-                                                        children: "Edit"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/pages/transactions.tsx",
-                                                        lineNumber: 166,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        onClick: ()=>handleDelete(transaction._id),
-                                                        className: "bg-red-500 text-white p-1 rounded",
-                                                        children: "Delete"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/pages/transactions.tsx",
-                                                        lineNumber: 172,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/pages/transactions.tsx",
-                                                lineNumber: 165,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, transaction._id, true, {
-                                        fileName: "[project]/src/pages/transactions.tsx",
-                                        lineNumber: 158,
-                                        columnNumber: 15
-                                    }, this))
-                            }, void 0, false, {
-                                fileName: "[project]/src/pages/transactions.tsx",
-                                lineNumber: 156,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/pages/transactions.tsx",
-                        lineNumber: 146,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/pages/transactions.tsx",
-                lineNumber: 144,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/pages/transactions.tsx",
-        lineNumber: 96,
-        columnNumber: 5
-    }, this);
-};
-_s(Transactions, "2eewZk8s02wj/y0CP7U3UpHNGag=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"]
-    ];
-});
-_c = Transactions;
-const __TURBOPACK__default__export__ = Transactions;
-var _c;
-__turbopack_refresh__.register(_c, "Transactions");
+            break;
+        case "POST":
+            // Destructure required fields from the request body
+            const { userId: postUserId, type, amount, description, date } = req.body;
+            // Check if all required fields are provided
+            if (!postUserId || !type || !amount || !description || !date) {
+                return res.status(400).json({
+                    message: "Semua field harus diisi"
+                });
+            }
+            // Validate if postUserId is a valid ObjectId
+            if (!__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mongoose$2f$dist$2f$browser$2e$umd$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Types"].ObjectId.isValid(postUserId)) {
+                return res.status(400).json({
+                    message: "Invalid User ID"
+                });
+            }
+            try {
+                // Create a new transaction instance
+                const newTransaction = new Transaction({
+                    userId: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$mongoose$2f$dist$2f$browser$2e$umd$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Types"].ObjectId(postUserId),
+                    type,
+                    amount,
+                    description,
+                    date: new Date(date)
+                });
+                // Save the new transaction to the database
+                await newTransaction.save();
+                // Return the created transaction as the response
+                res.status(201).json(newTransaction);
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({
+                    message: "Terjadi kesalahan saat menambahkan transaksi"
+                });
+            }
+            break;
+        case "DELETE":
+            // Extract transactionId from the request body
+            const { transactionId } = req.body;
+            // Check if transactionId is provided
+            if (!transactionId) {
+                return res.status(400).json({
+                    message: "Transaction ID harus disertakan"
+                });
+            }
+            try {
+                // Delete the transaction by its ID
+                const deletedTransaction = await Transaction.findByIdAndDelete(transactionId);
+                // Check if the transaction exists before trying to delete
+                if (!deletedTransaction) {
+                    return res.status(404).json({
+                        message: "Transaksi tidak ditemukan"
+                    });
+                }
+                // Return a success message
+                res.status(200).json({
+                    message: "Transaksi berhasil dihapus"
+                });
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({
+                    message: "Terjadi kesalahan saat menghapus transaksi"
+                });
+            }
+            break;
+        default:
+            // Handle unsupported HTTP methods
+            res.setHeader("Allow", [
+                "GET",
+                "POST",
+                "DELETE"
+            ]);
+            res.status(405).json({
+                message: `Metode ${req.method} tidak diizinkan`
+            });
+            break;
+    }
+}
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_refresh__.registerExports(module, globalThis.$RefreshHelpers$);
 }

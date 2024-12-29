@@ -8,12 +8,14 @@ export interface IUser {
 }
 
 export interface Transaction {
-  _id: string;
+  transactionId: string;
   userId: string;
-  type: "income" | "expense";
-  amount: number;
   description: string;
-  date: Date;
+  amount: number;
+  type: "income" | "expense";
+  date: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IncomeData {

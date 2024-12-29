@@ -144,7 +144,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
         setIsSubmitting(true);
         setErrorMessage("");
         try {
-            const response = await fetch(`${("TURBOPACK compile-time value", "http://localhost:3000")}/api/register`, {
+            const response = await fetch(`/api/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -161,6 +161,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                 onRegisterError(message);
             }
         } catch (error) {
+            console.log(error);
             setErrorMessage("Terjadi kesalahan saat menghubungi server.");
             onRegisterError("Terjadi kesalahan saat menghubungi server.");
         } finally{
@@ -178,7 +179,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                     children: "Register"
                 }, void 0, false, {
                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                    lineNumber: 73,
+                    lineNumber: 72,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("form", {
@@ -192,7 +193,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     children: "Username"
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 75,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -205,13 +206,13 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 79,
+                                    lineNumber: 78,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/RegisterModal.tsx",
-                            lineNumber: 75,
+                            lineNumber: 74,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -222,7 +223,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     children: "Email"
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 90,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -235,13 +236,13 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 94,
+                                    lineNumber: 93,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/RegisterModal.tsx",
-                            lineNumber: 90,
+                            lineNumber: 89,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -252,7 +253,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     children: "Password"
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 105,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -265,13 +266,13 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                                     required: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                                    lineNumber: 109,
+                                    lineNumber: 108,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/pages/RegisterModal.tsx",
-                            lineNumber: 105,
+                            lineNumber: 104,
                             columnNumber: 11
                         }, this),
                         errorMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -279,7 +280,7 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                             children: errorMessage
                         }, void 0, false, {
                             fileName: "[project]/src/pages/RegisterModal.tsx",
-                            lineNumber: 120,
+                            lineNumber: 119,
                             columnNumber: 28
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -289,13 +290,13 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                             children: isSubmitting ? "Mendaftar..." : "Daftar"
                         }, void 0, false, {
                             fileName: "[project]/src/pages/RegisterModal.tsx",
-                            lineNumber: 122,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                    lineNumber: 74,
+                    lineNumber: 73,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -304,18 +305,18 @@ const RegisterModal = ({ isOpen, onClose, onRegisterSuccess, onRegisterError })=
                     children: "X"
                 }, void 0, false, {
                     fileName: "[project]/src/pages/RegisterModal.tsx",
-                    lineNumber: 131,
+                    lineNumber: 130,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/pages/RegisterModal.tsx",
-            lineNumber: 72,
+            lineNumber: 71,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/pages/RegisterModal.tsx",
-        lineNumber: 71,
+        lineNumber: 70,
         columnNumber: 5
     }, this);
 };
